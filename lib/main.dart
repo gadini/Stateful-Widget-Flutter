@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int contador = 0;
+  String aviso = 'Voce clicou 0 vezes';
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +23,24 @@ class _MyAppState extends State<MyApp> {
           title: Text('Stateful Exemplo'),
         ),
         body: Center(
-          child: Text('Voce clicou $contador vezes')
+          child: Text(aviso)
           ),
         floatingActionButton: FloatingActionButton(
           onPressed: (){
             setState(() {
               contador++;
+              if(contador > 10){
+                aviso = 'O valor passou o limite do app';
+              }
+              else{
+                aviso = 'Voce clicou $contador vezes';
+              }
             });
           },
           child: Icon(Icons.add),
         ),
+        
+        
         ),
     );
   }
